@@ -5,24 +5,19 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - name: Setup sonarqube
-              uses: SonarSource/sonarqube-scan-action@master
-            - name: "Checkout repository on branch: ${{ github.REF }}"
+            - name: Checkout repository
               uses: actions/checkout@v2
               with:
-                  ref: ${{ github.HEAD_REF }}
                   fetch-depth: 0
-            - name: Run an analysis of the PR
+
+            - name: SonarCloud Scan
+              uses: SonarSource/sonarcloud-github-action@master
               env:
-                  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-              run: sonar-scanner
-                  -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
-                  -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-                  -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-                  -Dsonar.pullrequest.key=${{ github.event.number }}
-                  -Dsonar.pullrequest.branch=${{ github.HEAD_REF }}
-                  -Dsonar.pullrequest.base=${{ github.BASE_REF }}
-                  -Dsonar.pullrequest.github.repository=${{ github.repository }}
-                  -Dsonar.scm.provider=git
-                  -Dsonar.java.binaries=/tmp
+              with:
+                  args: >
+                    -Dsonar.pullrequest.key=${{ github.event.number }}
+                    -Dsonar.pullrequest.branch=${{ github.HEAD_REF }}
+                    -Dsonar.pullrequest.base=${{ github.BASE_REF }}
+                    -Dsonar.pullrequest.github.repository=${{ github.repository }}
