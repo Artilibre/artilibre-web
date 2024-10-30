@@ -7,6 +7,7 @@ jobs:
         steps:
             - uses: actions/checkout@v2
               with:
+                  ref: ${{ github.head_ref }}
                   fetch-depth: 0
 
             - name: Setup SonarQube scanner
@@ -14,9 +15,4 @@ jobs:
               env:
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
                   SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-              with:
-                  args: >
-                    -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-                    -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
-                    -Dsonar.pullrequest.branch=${{ github.head_ref }}
-                    -Dsonar.pullrequest.base=${{ github.base_ref }}
+
