@@ -1,0 +1,13 @@
+# Services configuration
+# --------------------------------------------------------
+services:
+  # Nextjs project
+  web:
+    working_dir: $ARTI_WEB_WORKDIR
+    image: node:lts-slim
+    container_name: artilibre-web
+    volumes:
+      - ".:$ARTI_WEB_WORKDIR"
+    ports:
+      - "$ARTI_WEB_PUBLISHED_PORT:3000"
+    command: sh -c "npm install --legacy-peer-deps && npm run dev"
