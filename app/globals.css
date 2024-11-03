@@ -70,7 +70,7 @@ body {
     @apply bg-background text-foreground;
   }
 
-  .nav-bar-link {
-    @apply text-sm font-medium text-foreground hover:text-foreground/80;
+  .nav-link {
+    @apply text-muted-foreground transition-colors hover:text-primary/90;
   }
 }
