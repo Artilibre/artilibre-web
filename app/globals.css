@@ -14,7 +14,7 @@ body {
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
+    --primary: 20 100% 60%;
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;
@@ -71,6 +71,6 @@ body {
   }
 
   .nav-bar-link {
-    @apply text-sm font-medium text-primary hover:text-primary/80;
+    @apply text-sm font-medium text-foreground hover:text-foreground/80;
   }
 }
