@@ -8,18 +8,16 @@ import { User } from "lucide-react";
 export const Nav = () => {
   return (
     <>
-      <Link href="/artisans" className="nav-bar-link">
+      <Link href="/artisans" className="nav-link">
         Les artisans
       </Link>
-      <Link href="/concept" className="nav-bar-link">
+      <Link href="/concept" className="nav-link">
         Le concept
       </Link>
-      <Link href="/tarifs" className="nav-bar-link">
+      <Link href="/tarifs" className="nav-link">
         Les tarifs
       </Link>
-      <Button variant="default" className="bg-orange-500 text-white hover:bg-orange-600">
-        Vous êtes artisan ?
-      </Button>
+      <Button variant="default">Vous êtes artisan ?</Button>
       <Button variant="ghost" size="icon" className="ml-2">
         <User className="h-5 w-5" />
         <span className="sr-only">User account</span>
