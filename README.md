@@ -9,8 +9,9 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-For now, it exists 3 environments :
+For now, it exists 4 environments :
 
+- local : http://localhost:3222 (port depends of your `ARTI_WEB_PUBLISHED_PORT` in [.env](.env))
 - dev :
 - staging :
 - prod : https://artilibre.fr
@@ -34,6 +35,13 @@ docker compose up
 We use [tailwindcss](https://tailwindcss.com/) so it could be a good idea to use this vscode plugin `Tailwind CSS IntelliSense`. Our vscode configuration is shared with [.vscode/settings.json](.vscode/settings.json). The file association lets us to avoid seeing the vscode error on tailwind directive : unknown at rule @tailwind warning.
 
 You can find more information about it at this address : https://byby.dev/at-rule-tailwind
+
+### Fonts
+
+We use font from Vercel named [Geist](https://vercel.com/font). You can simply use it with tailwindcss by using:
+
+- `font-sans` class name for Geist Sans
+- `font-mono` class name for Geist Mono.
 
 ### Legacy peer deps 🧬
 
