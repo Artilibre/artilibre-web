@@ -1,5 +1,5 @@
-import { Footer } from "@/components/home/footer";
-import { NavBar } from "@/components/home/nav-bar";
+import { Footer } from "@/components/layout/footer";
+import { NavBar } from "@/components/layout/nav-bar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
