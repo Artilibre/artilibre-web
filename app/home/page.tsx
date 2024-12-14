@@ -1,4 +1,6 @@
 import { Twochoices } from "@/components/home/two-choices";
+import { What } from "@/components/home/what";
+import { Who } from "@/components/home/who";
 import { Footer } from "@/components/layout/footer";
 import { NavBar } from "@/components/layout/nav-bar";
 import { Button } from "@/components/ui/button";
@@ -30,6 +32,9 @@ const HomePage = async () => {
           </div>
         </div>
       </div>
+
+      <What />
+      <Who />
 
       <Twochoices />
 
