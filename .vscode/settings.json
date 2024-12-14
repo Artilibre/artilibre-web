@@ -4,5 +4,6 @@
     "notebook.defaultFormatter": "esbenp.prettier-vscode",
     "files.associations": {
         "*.css": "tailwindcss"
-    }
+    },
+    "editor.rulers": [120],
 }
