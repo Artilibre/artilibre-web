@@ -5,17 +5,16 @@ import { Button } from "@/components/ui/button";
 import { SearchIcon } from "lucide-react";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useEffect, useState } from "react";
-import { Speciality } from "@/types/speciality.type";
-import { getSpecialities } from "@/services/specialityService";
+import { Job } from "@/types/job.type";
+import { getJobs } from "@/services/jobService";
 
 export const Search = () => {
-  const [specialities, setSpecialities] = useState<Speciality[]>([]);
+  const [jobs, setJobs] = useState<Job[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getSpecialities();
-      console.log("🚀 ~ fetchData ~ data:", data);
-      setSpecialities(data);
+      const data = await getJobs();
+      setJobs(data);
     };
 
     fetchData();
@@ -40,8 +39,8 @@ export const Search = () => {
                 <SelectContent className="w-full">
                   <SelectGroup>
                     <SelectLabel>Fruits</SelectLabel>
-                    {specialities &&
-                      specialities.map(speciality => (
+                    {jobs &&
+                      jobs.map(speciality => (
                         <SelectItem key={speciality.id} value={speciality.slug}>
                           {speciality.name}
                         </SelectItem>
