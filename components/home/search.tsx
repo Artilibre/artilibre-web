@@ -7,9 +7,13 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { useEffect, useState } from "react";
 import { Job } from "@/types/job.type";
 import { getJobs } from "@/services/jobService";
+import { useRouter } from "next/navigation";
 
 export const Search = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
+  const [form, setForm] = useState({ establishment: "", location: "", job: "" });
+  const [error, setError] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,6 +23,23 @@ export const Search = () => {
 
     fetchData();
   }, []);
+
+  const search = () => {
+    setError(false);
+    // Check at least one form item is not empty
+    if (!Object.values(form).some(value => value)) {
+      setError(true);
+      return;
+    }
+
+    // Create query params according to form values
+    const queryParams = Object.entries(form)
+      .filter(([, value]) => value)
+      .map(([key, value]) => `${key}=${value}`)
+      .join("&");
+    // router.push(`/result?${queryParams}`);
+    router.push("coming-soon");
+  };
 
   return (
     <div className="relative">
@@ -32,7 +53,7 @@ export const Search = () => {
             <div className="mt-4 flex flex-col space-y-2">
               <Input placeholder="Etablissement" className="w-full" />
               <Input placeholder="Où ?" className="w-full" />
-              <Select>
+              <Select onValueChange={value => setForm(prevForm => ({ ...prevForm, job: value }))}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Spécialité" />
                 </SelectTrigger>
@@ -48,7 +69,10 @@ export const Search = () => {
                   </SelectGroup>
                 </SelectContent>
               </Select>
-              <Button className="h-full">
+
+              {error && <span className="my-3 text-red-500">Vous devez remplir au moins un des 3 champs</span>}
+
+              <Button className="h-full" onClick={() => search()}>
                 <SearchIcon className="h-4 w-4" />
                 <span>Rechercher</span>
               </Button>
